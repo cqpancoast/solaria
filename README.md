@@ -1,2 +1,2 @@
-# solaria
-An API for making Choose Your Own Adventure games.
+# Solaria
+An API for making interactive fiction.
