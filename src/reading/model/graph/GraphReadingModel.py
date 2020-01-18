@@ -16,7 +16,7 @@ class GraphReadingModel(ReadingModel):
     def __init__(self):
         return
 
-    def process_user_input(self, user_input):
+    def interp_reader_input(self, reader_input):
         # TODO process the damn user input!
         #   Keep in mind that these can be any objects being taken in and being returned
         #   How do we structure our project knowing that processing user input is easily the most complicated part?

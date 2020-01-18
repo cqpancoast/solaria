@@ -1,7 +1,7 @@
 
 
 # TEMPLATE CLASS for ReadingViews.
-# A ReadingView must be able to display information relayed by a ReadingModel.
+# A ReadingView must display text that is given to it by a ReadingModel.
 class ReadingView:
     def read_story(self, raw_model_output):
         return
