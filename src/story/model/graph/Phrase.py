@@ -21,4 +21,4 @@ class Phrase:
 
     # Prints out this Phrase's prompt and alters the reader.
     def accept_reader(self, reader):
-        pass  # TODO how to represent alteration? What data?
+        pass  # TODO how to represent alteration data?

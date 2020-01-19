@@ -5,4 +5,4 @@
 # output.
 class ReadingModel:
     def interp_reader_input(self, reader_input):
-        return
+        pass

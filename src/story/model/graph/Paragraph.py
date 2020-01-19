@@ -15,7 +15,7 @@
 # The inhabiting of a Paragraph never deviates from this prescription:
 #   - The Paragraph accepts the Reader, and prints out a prompt
 #     depending on the Reader's state.
-#   - The reader (lowercase L) types in or chooses an input.
+#   - The reader (lowercase L) produces an input.
 #   - The Paragraph sends that input off to the interpreter, along with
 #     some information about itself. TODO clarify this and below
 #   - Based on the response from the interpreter, the Paragraph either
@@ -55,3 +55,5 @@ class Paragraph:
         return ""
 
     # TODO function for determining if Reader satisfies condition
+
+    # TODO maybe add some stuff with IDs and whatever
