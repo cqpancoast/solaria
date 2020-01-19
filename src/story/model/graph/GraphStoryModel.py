@@ -1,13 +1,17 @@
 from src.story.model import StoryModel
+import networkx as nx
 
 
 # Represents a Story as a graph with nodes and edges.
-# - The nodes are called Paragraphs, which contain story content that displays depending on the state of the Reader.
-# - The edges are called Phrases, which connect Paragraphs to one another as well as to themselves, which change the
-#   state of the Reader.
-# TODO Should I code my own stuff for graphs or should I use software from somewhere else?
-class GraphStoryModel(StoryModel):  # TODO should GSM have a parent class StoryModel?
+# - The nodes are called Paragraphs, which contain story content that
+#   displays depending on the state of the Reader.
+# - The edges are called Phrases, which connect Paragraphs to one
+#   another as well as to themselves, which change the state of the
+#   Reader.
+class GraphStoryModel(StoryModel):
 
-    # Default constructor. Creates a GraphStoryModel with a single empty node.
-    def __init__(self):  # TODO do when you know how you'll represent graphs
-        return
+    # Default constructor. Creates a null Graph.
+    def __init__(self):
+        self.graph = nx.MultiDiGraph()
+
+    # TODO write other constructors using Builder pattern and NX prescription
