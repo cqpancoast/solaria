@@ -14,4 +14,11 @@
 # The traversal of a Phrase can alter a Reader's stats or can display
 # text, but does not have to do either one.
 class Phrase:
-    
+
+    # Initialize this Phrase with an empty alteration function and prompt
+    def __init__(self):
+        self.prompt = ""
+
+    # Prints out this Phrase's prompt and alters the reader.
+    def accept_reader(self, reader):
+        pass  # TODO how to represent alteration? What data?

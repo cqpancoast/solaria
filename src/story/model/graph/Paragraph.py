@@ -8,7 +8,11 @@
 # origin Paragraph. A Paragraph also has zero or more Phrases that feed
 # into it.
 #
-# The inhabiting  of a Paragraph never deviates from this prescription:
+# The Paragraph has a field called conditional_prompts which is a list
+# of maps from determiners to prompts. prompt_conditionally returns the
+# corresponding prompt, or a default prompt.
+#
+# The inhabiting of a Paragraph never deviates from this prescription:
 #   - The Paragraph accepts the Reader, and prints out a prompt
 #     depending on the Reader's state.
 #   - The reader (lowercase L) types in or chooses an input.
@@ -27,3 +31,27 @@
 # layer.
 class Paragraph:
 
+    # Initializes this Paragraph with an empty conditional_print dict
+    def __init__(self):
+        self.__init__([])
+        self.conditional_prompts = None  # NOTE do this REALLY need inclusion?
+
+    # Initializes this Paragraph with a Reader property to response dict
+    def __init__(self, conditional_prompts):
+        assert type(conditional_prompts, list)  # NOTE this good?
+        self.conditional_prompts = conditional_prompts
+
+    # NOTE see above docs
+    def accept_reader(self, reader):
+        assert type(reader, dict)
+        self.prompt_conditionally(reader)
+
+    # Returns the correct prompt for this paragraph depending on the Reader's
+    # stats
+    def prompt_conditionally(self, reader):
+        for condition in self.conditional_prompts:
+            pass  # print conditional_prompt if reader passes condition
+            # TODO require condition has default prompt, or code that in?
+        return ""
+
+    # TODO function for determining if Reader satisfies condition
