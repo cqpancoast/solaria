@@ -31,4 +31,3 @@ class GraphReadingModel(ReadingModel):
             self.reader,
             self.current_paragraphs
         )
-
