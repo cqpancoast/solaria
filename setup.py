@@ -1,0 +1,19 @@
+from setuptools import setup, find_packages
+
+setup(
+    name='solaria',
+    version='0.0.0',
+    entry_points={
+        'console_scripts': [
+            'solaria = main:main',
+        ],
+    },
+    packages=find_packages(),  # NOTE what exactly does this do?
+    # TODO dependencies: networkx
+
+    author='Casey Pancoast',
+    description='Currently a command line editor for interactive fiction.',
+    project_urls={
+        'Source code': 'www.github.com/cqpancoast/solaria'
+    }
+)
