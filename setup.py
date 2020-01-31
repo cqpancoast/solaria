@@ -9,11 +9,11 @@ setup(
         ],
     },
     packages=find_packages(),  # NOTE what exactly does this do?
-    # TODO dependencies: networkx
+    install_requires=['networkx'],
 
     author='Casey Pancoast',
     description='A whole lot of things at the moment.',
     project_urls={
         'Source code': 'www.github.com/cqpancoast/solaria'
-    }
+    },
 )
