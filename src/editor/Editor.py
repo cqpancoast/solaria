@@ -1,30 +1,32 @@
 
 
-# TEMPLATE CLASS for editors. An editor must be able to construct,
-# revise, and display a Story. It also must be able to produce a read-
-# only version of the Story.
-class Editor:
+class Editor(object):
+    """TEMPLATE CLASS for editors.
 
-    # Initialize this editor by giving it a Story to edit.
+    An editor must be able to construct, revise, and display a Story.
+    It also must be able to produce a read-only version of the Story.
+    """
+
     def __init__(self, story):
+        """Initialize this editor by giving it a Story to edit."""
         self.story = story
 
-    # Add a story component to the Story.
     def add(self, story_component):
+        """Add a story component to the Story."""
         pass
 
-    # Edit a component of the Story.
     def edit(self, story_component):
+        """Edit a component of the Story."""
         pass
 
-    # Remove a component of the Story.
     def remove(self, story_component):
+        """Remove a component of the Story."""
         pass
 
-    # Display a visual representation of the story.
     def visualize(self, story_component, options):
+        """Display a visual representation of the story."""
         pass
 
-    # Produce a read-only version of the currently edited Story.
     def build(self):
+        """Produce a read-only version of the currently edited Story."""
         pass
