@@ -5,7 +5,7 @@ setup(
     version='0.0.2',
     entry_points={
         'console_scripts': [
-            'solaria = main:main',
+            'solaria = src.environment.commandline.cle_main:main',
         ],
     },
     packages=find_packages(),  # NOTE what exactly does this do?

@@ -7,5 +7,5 @@ ascii_snek = """\
 """
 
 
-def main():
-    print(ascii_snek)
+def main(argv):
+    print(argv + "\n" + ascii_snek)

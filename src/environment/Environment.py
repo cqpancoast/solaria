@@ -9,13 +9,22 @@ class Environment(object):
     Editor complexes.
     """
 
-    # Produce an executable file containing a Reading, Interpreter, and Story
-    # hooked up correctly.
     def build(self):
+        """Produce an executable file containing a Reading, Interpreter,
+        and Story hooked up correctly.
+        """
+
         pass
 
-    # Wire up Editor to Story and add the complex to the environment. Depending
-    # on the Environment, this can kick out the previous Story-Editor or add
-    # it to some sort of list.
     def add_story_editor(self, story, editor):
+        """Wire up Editor to Story and add the complex to the Environment.
+        Depending on the Environment, this can kick out the previous
+        Story-Editor or add it to some sort of list.
+
+        Args:
+            story:
+            editor:
+
+        """
+
         pass
