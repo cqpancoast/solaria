@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='solaria',
-    version='0.0.0',
+    version='0.0.1',
     entry_points={
         'console_scripts': [
             'solaria = main:main',
@@ -12,7 +12,7 @@ setup(
     # TODO dependencies: networkx
 
     author='Casey Pancoast',
-    description='Currently a command line editor for interactive fiction.',
+    description='A whole lot of things at the moment.',
     project_urls={
         'Source code': 'www.github.com/cqpancoast/solaria'
     }
