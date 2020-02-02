@@ -10,6 +10,10 @@ class Draft(object):
     """
 
     def build(self):
-        """Produce a Story from this Draft."""
+        """Produce a Story from this Draft.
+
+        Returns:
+            A Story.
+        """
 
         pass

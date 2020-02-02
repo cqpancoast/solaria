@@ -9,9 +9,9 @@ class Interpreter(object):
     Story appropriately.
     """
 
-    def interpret(self, reader_input, readthrough):
+    def interpret(self, reader_input, readthrough_state):
         """Accept reader input and current Readthrough state, return
-        response.
+        displayable.
         """
 
         pass

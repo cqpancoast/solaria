@@ -24,8 +24,8 @@ class RTController(Readthrough):
         """Runs and manages a read session. Generally, the cycle will look like
         this:
         - Accepts user input from the view,
-        - passes it to the model,
-        - displays model output via the view, and
+        - processes it in some way,
+        - displays result via the view, and
         - waits for user input.
         """
 

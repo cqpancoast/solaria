@@ -3,30 +3,25 @@
 class RTModel(object):
     """TEMPLATE CLASS for ReadthroughModels.
 
-    An RTModel must be able to accept user input provided by the
-    RTController and store displayable output in a queue, to be
-    displayed by the view when the controller decrees. When a queue
-    item is displayed, this removes it from the queue.
+    An RTModel must be able to store displayable output in a queue, to
+    be displayed by the view when the controller decrees. When a queue
+    item is displayed, this removes it from the queue. The queue also
+    must be able to be incremented.
 
-    Note that this ties the model implementation to the view
-    implementation, as the view must be such that it can display the
-    output stored in this model's buffer.
-
-    If an Interpreter is being used, that interpreter is accessed within
-    this class.
+    This also must be able to return a current state, if it has one.
+    If it doesn't have one, it will return None.
     """
 
-    def accept_reader_input(self, reader_input):
-        """Accepts reader input from the controller and returns an output
-        displayable by a view.
-
-        Args:
-            reader_input: input from the reader. Implementations of this class
-            fix the type of the input.
-
-        Returns:
-            displayable: data displayable by the RTView.
+    def get_readthrough_state(self):
         """
+        Returns:
+            The current state of this readthrough.
+        """
+
+        pass
+
+    def add_displayable(self, displayable):
+        """Adds a displayable to this RTModel's queue."""
 
         pass
 
@@ -43,3 +38,5 @@ class RTModel(object):
         Returns:
             Whether this RTModel's queue is empty.
         """
+
+        pass

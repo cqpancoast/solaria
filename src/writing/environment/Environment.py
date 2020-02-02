@@ -1,3 +1,5 @@
+from src.writing.draft.Draft import Draft
+from src.writing.editor.Editor import Editor
 
 
 class Environment(object):
@@ -16,15 +18,14 @@ class Environment(object):
 
         pass
 
-    def add_story_editor(self, draft_story, editor):
+    def add_draft_editor(self, draft: Draft, editor: Editor):
         """Wire up Editor to Draft and add the complex to the Environment.
         Depending on the Environment, this can kick out the previous
-        Draft-Editor or add it to some sort of list.
+        Draft-Editor or add it to a list.
 
         Args:
-            draft_story:
-            editor:
-
+            draft: a draft to be edited
+            editor: an editor capable of editing and displaying the draft
         """
 
         pass
