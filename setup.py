@@ -5,7 +5,8 @@ setup(
     version='0.0.3',
     entry_points={
         'console_scripts': [
-            'solaria = src.writing.environment.scale.cle_main:main',
+            'scale = src.writing.environment.scale.cle_main:main',
+            # 'solaria = src.reading.readthrough.main' or something
         ],
     },
     packages=find_packages(),  # NOTE what exactly does this do?
