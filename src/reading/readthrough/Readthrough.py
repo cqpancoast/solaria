@@ -3,25 +3,30 @@
 class Readthrough(object):
     """TEMPLATE CLASS for Readthroughs.
 
-    A Readthrough must accept reader input and present prompt output.
-    These methods are separated so that a single input can present any
-    number of outputs, rather than just one.
-
-    In any read session but the simplest, a Readthrough should store the
-    state of the read session, which could mean many different things
-    for each read session.
+    A Readthrough is the center of a read session - it's what keeps
+    things moving and what keeps track of the read session's state. It
+    must be able to query a particular Story implementation for
+    information and use that information to update the current state of
+    the read session. Then, it must be able to use that current read
+    session state to produce an Interaction, and send that Interaction
+    out to a View. This dude's got a lot on its plate!
     """
 
-    def accept_reader_input(self, reader_input):
-        """Accept reader input in whatever form the implementation
-        requires.
+    def start_reading(self):
+        """
+        Runs a read session.
+        NOTE might add params (for loading saves, perhaps?)
         """
 
         pass
 
-    def present_output(self):
-        """Produce output in whatever manner is specified by the implementing
-        class.
+    def build_interaction(self):
+        """
+        Constructs an Interaction using the current state of a read
+        session.
+
+        Returns:
+            An Interaction.
         """
 
         pass
