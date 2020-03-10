@@ -19,14 +19,3 @@ class Readthrough(object):
         """
 
         pass
-
-    def build_interaction(self):
-        """
-        Constructs an Interaction using the current state of a read
-        session.
-
-        Returns:
-            An Interaction.
-        """
-
-        pass

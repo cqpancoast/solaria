@@ -18,3 +18,5 @@ class GraphStoryModel(object):
     def __init__(self):
         """Default constructor. Creates a null Graph."""
         self.graph = nx.MultiDiGraph()
+
+    # TODO "a story must be able to access its own components"

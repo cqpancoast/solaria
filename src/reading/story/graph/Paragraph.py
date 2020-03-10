@@ -17,7 +17,7 @@ class Paragraph:
     The inhabiting of a Paragraph never deviates from this prescription:
       - The Paragraph accepts the Reader, and prints out a prompt
         depending on the Reader's state.
-      - The reader (lowercase L) produces an input.
+      - The reader (lowercase R) produces an input.
       - The Paragraph sends that input off to the interpreter, along
         with some information about itself. TODO clarify this and below
       - Based on the response from the interpreter, the Paragraph either
