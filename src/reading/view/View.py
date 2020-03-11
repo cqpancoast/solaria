@@ -8,6 +8,11 @@ class View(object):
     kinds of Displayables and Prompts as possible. A View can also
     support meta-level operations like saving and quitting, but does not
     have to.
+
+    The displayable and the prompt data from the displayable or Prompt
+    that this user will take in may be raw data types. The use of
+    Displayable and PromptData objects is left up to the View
+    implementation. NOTE ...but I might change this later.
     """
 
     def display(self, displayable):
