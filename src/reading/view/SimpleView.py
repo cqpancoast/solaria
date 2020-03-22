@@ -14,4 +14,4 @@ class SimpleView(View):
         assert(type(prompt_data) is list)  # expect a list (of strings)
         for option in prompt_data:
             print(option)
-        return input()
+        return prompt.process_view_output(input())

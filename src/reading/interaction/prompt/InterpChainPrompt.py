@@ -11,8 +11,8 @@ class InterpChainPrompt(Prompt):
         Args:
             prompt_data: the data used by the View to prompt the reader.
             interpreters: a list of zero or more interpreters, in which the
-                input type of the first is the View-agnostic View output,
-                the output of the first is the input of the second, and so on.
+                input type of the first is the View-agnostic View output, the
+                output of the first is the input of the second, and so on.
         """
 
         self.prompt_data = prompt_data
@@ -25,7 +25,7 @@ class InterpChainPrompt(Prompt):
         """Processes view output by applying Interpreters sequentially.
 
         Args:
-            view_output: a View-agnostic unprocessed reader response.
+            view_output: View-agnostic unprocessed reader response.
 
         Returns:
             The result of the View's output being shoved through the
