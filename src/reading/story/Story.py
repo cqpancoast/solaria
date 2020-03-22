@@ -1,14 +1,24 @@
+from src.reading.interaction.Interaction import Interaction
 
 
 class Story(object):
     """TEMPLATE CLASS for Stories.
 
-    A Story must be able to access its own components, serving as a
-    database that the Readthrough can access when building situations.
-    A good Story makes creating situations as easy as possible for a
-    potential Readthrough.
-
-    A Story is read-only. *wink*
+    A Story is something that produces Interactions and then uses the
+    result of that Interaction to produce the next one.
     """
 
-    pass
+    def turn_page(self, interaction_result) -> Interaction:
+        """Accepts the result of a previous Interaction and produces the next
+        one. An input of None should always return the same thing, typically a
+        desired initial state.
+
+        Args:
+            interaction_result: the result of the previous interaction, or None
+                if this is the first call to turn_page.
+
+        Returns:
+            The next Interaction.
+        """
+
+        pass

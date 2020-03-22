@@ -6,7 +6,7 @@ setup(
     entry_points={
         'console_scripts': [
             'scale = src.writing.environment.scale.cle_main:main',
-            # 'solaria = src.reading.readthrough.main' or something
+            # 'solaria = src.reading.storyteller.main' or something
         ],
     },
     packages=find_packages(),  # NOTE what exactly does this do?

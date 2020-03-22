@@ -1,3 +1,4 @@
+from src.reading.interaction.prompt.Prompt import Prompt
 
 
 class View(object):
@@ -11,15 +12,15 @@ class View(object):
 
     The displayable and the prompt data from the displayable or Prompt
     that this user will take in may be raw data types. The use of
-    Displayable and PromptData objects is left up to the View
-    implementation. NOTE ...but I might change this later.
+    Displayable and prompt data objects is left up to the View
+    implementation.
     """
 
     def display(self, displayable):
-        """ Displays a displayable.
+        """Displays a Displayable.
 
         Args:
-            displayable: The displayable to be Displayed.
+            displayable: The Displayable to be displayed.
 
         Raises:
             NOTE [some exception] if this View does not support the
@@ -28,8 +29,8 @@ class View(object):
 
         pass
 
-    def prompt(self, prompt):
-        """ Prompts the reader with the given Prompt. Processes the Prompt such
+    def prompt(self, prompt: Prompt):
+        """Prompts the reader with the given Prompt. Processes the Prompt such
         that the processed reader response does not depend on the View, then
         calls back to the Prompt for Interpretation. Finally, returns the
         interpreted response.
