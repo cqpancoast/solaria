@@ -4,7 +4,7 @@ from src.reading.interaction.prompt.InterpChainPrompt import InterpChainPrompt
 from src.reading.story.Story import Story
 
 
-class SimpleStory(Story):
+class StringBuilderStory(Story):
     """A Story that concatenates and displays everything the reader has
     typed in. Expects a string as a result of the interaction."""
 

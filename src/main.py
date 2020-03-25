@@ -1,6 +1,6 @@
-from src.reading.story.SimpleStory import SimpleStory
+from src.reading.story.StringBuilderStory import StringBuilderStory
 from src.reading.storyteller.SimpleStoryteller import SimpleStoryteller
-from src.reading.view.SimpleView import SimpleView
+from src.reading.view.StringOptionView import StringOptionView
 
 
-SimpleStoryteller(SimpleStory(), SimpleView()).read()
+SimpleStoryteller(StringBuilderStory(), StringOptionView()).read()

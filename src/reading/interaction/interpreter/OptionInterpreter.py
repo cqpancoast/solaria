@@ -1,7 +1,7 @@
 from src.reading.interaction.interpreter.Interpreter import Interpreter
 
 
-class EnumInterpreter(Interpreter):
+class OptionInterpreter(Interpreter):
     """Has a Prompt with list data and a View. Receives user input. If
     the input is not an element of the Prompt data, prompts the reader
     again.

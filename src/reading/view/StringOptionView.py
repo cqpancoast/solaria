@@ -2,7 +2,7 @@ from src.reading.interaction.prompt.Prompt import Prompt
 from src.reading.view.View import View
 
 
-class SimpleView(View):
+class StringOptionView(View):
     """The simplest usable implementation of a View. Accepts strings as
     displayables and lists of strings as prompt data."""
 
