@@ -13,7 +13,7 @@ HTML/Javascript support, like [Twine](https://twinery.org)
 action and then communicates the effect of those choices back to the game 
 proper
 - [Zork](http://textadventures.co.uk/games/view/5zyoqrsugeopel3ffhz_vq/zork),
-and your own program to make more games just like it
+and/or your own program to make more games just like it
 
 Despite its text-based focus, Solaria is _view agnostic_, meaning that the
 framework is built for any arbitrary input and output. Potentially, the
@@ -25,8 +25,30 @@ The possibilities are limitless!
 
 ### The Solaria Framework
 
+The Solaria framework (just "the framework" from here on out) is a collection
+of "template classes" and rules for how they interact. That's it! The beauty of
+this over interactive storytelling software like [Twine](https://twinery.org)
+or [Inform](http://inform7.com) is that if you think you can do better than the
+developers, you're welcome (and encouraged) to! If you think other people will
+like it, you'll be able to post it to a place where other people can access it.
+
+But this is all very abstract. Let's get concrete.
+
+The framework can be thought of as a giant chain that goes from the writer to
+the reader, the two end users of your program.
+
+A more complete data definition can be found in this sub-README [here](src/README.md).
+
 ### Software Collections
 
-## How can I start?
+This will be a place where all framework implementations (and other things that
+might assist in the creation of story software) will go. It doesn't exist yet,
+but it will soon.
+
+## Where do I start?
+
+Why don't you take a look through our extensive [tutorial](https://en.wikipedia.org/wiki/Procrastination)!
 
 ## How can I help?
+
+[Email me](mailto:cqpancoast@gmail.com?subject=[yo wassup dude i want to collaborate on like solaria]), and we'll figure something out.
