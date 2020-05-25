@@ -4,54 +4,55 @@
 - I'm uncomfortable with the "it can be anything" Python typing that I've taken advantage of with responses, `Displayable`s, and `Prompt` data. Or, on the function-al side, `Interpreter`s. If something has no type restrictions, is there any sense in, like, calling these things anything?
 - Is Python a good choice for what I'm doing here?
 - How does the `Draft` represent itself? Are there any restrictions on this? A `Draft` explicitly has to be editable, so it seems reasonable to hard-code that functionality in a method, but I can't think how to do it in a way that preserves the freedom of `Draft` implementations.
-- Should I add a **develop** package? This would assist those disinclined towards coding with putting together custom linkings of **read** and **write** implementations.
-- (`Storyteller`, `Environment`) == (`Reading`, `Writing`)? Hm. This would mess with the current definition of a **reading** and **writing**, but would also eliminate two classes that seem like they are fat to be cut out.
-- **write** package unfinished. Simple as that.
+- Should I add a **develop** package? This would assist those disinclined towards coding with putting together custom linkings of **read** and **write** implementations. It would also solve the mystery of how **writing**s are linked.
+- **write** package unfinished.
+- Think about how a *read session* would function as a backend for a game in particular. Try to come up with some more backend examples for both a **writing** and a **reading**.
 
-**The Solaria framework** *(sol-ARR-ree-uh)* is a component-based Python object framework for the creation and execution of software-based [interactive fiction](https://en.wikipedia.org/wiki/Interactive_fiction). This framework is not limited to interactive fiction (particularly given the provided definition of "text-based"), and a further discussion of its capabilities can be found elsewhere (or here, but like, later).
+**The Solaria framework** *(sol-ARR-ree-uh)* is a component-based Python object framework for the creation and execution of software-based interactive storytelling. 
 
-The framework is separated into two halves: **write** and **read**.
-Together, these form a complete creative pipeline from a *writer* of interactive fiction to a *reader*.
+The framework is separated into two halves: **write** and **read**. Together, these form a complete creative pipeline from a *writer* of an interactive story to a *reader*.
 
-Terms:
+Here is the terminology describing the **write** half:
 - **write**: the **write** package, a collection of implementations of Solaria framework components focused on writing.
-- *writer*: an end user of a **writing**.
+- *writer*: the end user or program that uses the **writing**.
 - **writing**: an executable program that can run one or more *write session*s.
+- `Writing`: the class serving as the entry point to the **writing**.
 - *write session*: a linking of a complete set of compatible implementations of **write** framework components.
+
+The **read** half is beautifully symmetric:
 - **read**: the **read** package, a collection of implementations of Solaria framework components focused on reading.
-- *reader*: an end user of a **reading**.
+- *reader*: the end user or program that uses the **reading**.
 - **reading**: an executable program that can run one or more *read session*s.
+- `Reading`: the class serving as the entry point to the **reading**.
 - *read session*: a linking of a complete set of compatible implementations of **read** framework components.
 
-Here's a (non-technical, non-specific) visual:
-
-//[The Solaria Framework](/resources/framework.svg)
-
-Now for the technical, specific part, which should explain what's in the visual.
-
-### Writers and Readers
-
-First, a point of clarification.
+The purpose of a **writing** is to allow a *writer* to design a **reading**. The purpose of a **reading** is to tell a story that takes *reader* input into account. 
 
 The *writer* and *reader* don't have to be the end-users themselves, but can be backends to other programs, interfacing between a **writing** or **reading** and, say, some domain-specific framework.
-For example, the *reader* could be a video game that is using a **reading** to keep track of a player-traversed consequence tree in a playthrough, running a new *read session* every time the game boots (as the vocab goes).
 
-## Write
+### Scope
+
+
+
+## write
 
 The **write** section of the framework allows a *writer* to design a **reading**.
 
-It uses an `Environment` to organize one or more `Editor`s, each of which is a different way of displaying and(/or?) editing the contents of one or more `Draft`s. The `Environment` also has access to implementations of elements of the **read** package, which it can put together (along with a `Story`, a finalized `Draft`) to produce a **reading**.
+It uses a `Writing` to organize one or more `Editor`s, each of which is a different way of displaying and(/or?) editing the contents of one or more `Draft`s. The `Publisher` has access to implementations of elements of the **read** package, which it can put together (along with a `Story`, a finalized `Draft`) to produce a **reading**.
 
-### Environment
+### Writing
 
-An `Environment` is an entry point to a **writing** capable of linking and running its three suboordinate classes to create a *write session*. I dislike that this is the only class in **write** that breaks the naming scheme.
+A `Writing` is capable of linking and running its three suboordinate classes to create one or more *write session*s, typically upon *writer* direction, but not necessarily. Note that the difference between a `Writing` and a **writing** is that a **writing** is simply an executable that calls the `write()` method.
+
+#### Methods
+- `write(???)`: entry point for the `Writing`.
 
 ### Publisher
 
-Not sure yet. I was thinking that this could be the thing that has access to the software collections library. This could be the "linker" in the publishing process.
+A `Publisher` is in charge of finalizing a `Draft` and linking a `Story` with **read** package implementations to produce executable **reading**s. It can be thought of as a package manager for a **writing**, but the details are hazy.
 
 #### Methods
-- `publish(???) -> [reading]`: link together **read** framework components with a finalized `Draft` to produce a **reading**.
+- `publish(???)`: link together **read** framework components with a finalized `Draft` to produce a **reading**.
 
 ### Editor
 
@@ -63,24 +64,24 @@ An `Editor` can edit/revise a `Draft`, whatever that means. We'll start with the
 
 ### Draft
 
-A `Draft` is an editable precursor to a `Story`. It can faithfully represent itself somehow and has some method for changing its contents, although what a `Draft` is can vary so much that there are no required methods for this component on those fronts. However, there are some soft requirements: a good `Draft` represents itself in such a way that the `Story` it will finalize to is intuitive so as to make the *writer*'s job as easy as possible.
+A `Draft` is an editable precursor to a `Story`. It can faithfully represent itself (somehow) and has some method for changing its contents, although what a `Draft` is can vary so much that there are no required methods for this component on those fronts. However, there are some soft requirements: a good `Draft` represents itself in such a way that the `Story` it will finalize to is intuitive so as to make the *writer*'s job as easy as possible.
 
 #### Methods
-- `isFinalizable() -> bool`: returns whether this `Deaft` is finalizable.
+- `isFinalizable() -> bool`: returns whether this `Draft` is finalizable.
 - `finalize() -> Story`: finalize this `Draft` to produce a `Story`.
 
-## Read
+## read
 
 The **read** section of the framework provides the *reader* with an interactive experience.
 
 When a *read session* is begun, the **reading** uses data stored in its `Story` to generate `Interaction`s consisting of `Displayable`s and `Prompt`s for its `View` to present. The `Interaction` constructs `Interprete(r)`-d responses to `Prompt`s into a `[response]` for the `Storyteller` to pass along to the `Story`, which closes the cycle by generating another `Interaction`.
 
-### Storyteller
+### Reading
 
-The entry point into a *read session*. Deals with meta-level commands like saving and quitting, if that functionality is provided.
+A `Reading` can run one or more *read session*s. Deals with meta-level commands like saving and quitting, if that functionality is provided. Note that the difference between a `Reading` and a **reading** is that a **reading** is simply an executable that calls the `read()` method.
 
 #### Methods
-- `read(???)`: begin a *read session*. Depending on parameters, query the `Story` for an `Interaction` or load stored data or... or something.
+- `read()`: runs the `Reading`. I'm not hard-set on this, but I think `read()` takes no arguments - all configuration should be done in the constructor,
 
 ### Story
 
