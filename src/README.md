@@ -1,23 +1,20 @@
 # The Solaria Framework
 
-## Preamble, I guess
+*The Solaria Framework* is a two-piece component-based structure for developers to follow to design programs that allow users (writers or readers) to write or read interactive storytelling. In particular, implementations of this structure will typically reside inside other programs, keeping track of their interactive-storytelling parts.
 
-### For the masses
+From the [wikipedia page](https://en.wikipedia.org/wiki/Interactive_storytelling):
 
-* Designed for ease of implementation by developers.
-  * Only the absolute bare minimum of requirements to run the sessions are hard requirements.
-  * The framework structure was designed for developers to design intentional cross-compatibility between implementations.
-  * The framework structure was (will be) designed for both generality and ease of use.
+> Interactive storytelling […] is a form of digital entertainment in which the storyline is not predetermined. The author creates the setting, characters, and situation which the narrative must address, but the user (also reader or player) experiences a unique story based on their interactions with the story world.
 
-### For Blerner in particular
+After that, their definition gets way too specific, neglecting to separate function from implementation. (Even this part of the definition is a little implementation-specific for me (who says there’s characters?), but it will serve.)
 
-* I am also looking for critiques on the quality of my technical writing. This is intended to be a technical document, and if you have any advice on how to improve that, it would be welcome.
-  * In writing this, I followed the [Google Dev Docs Style Guide](https://developers.google.com/style/text-formatting), but I don't feel like proper text formatting is sufficient.
-* Yes, I intend to figure out what the frameworks are at some point, but I think that more important is building these requirements around them.
+There are three users at play here: the developer, the writer, and the reader. The choice of an *embeddable framework* as a central data structure was made for the benefit of the developer and writer — as it is *embeddable*, it can be nestled inside other programs for little cost, freeing a developer to design a reading or writing program unrestricted by this framework, or a writer to use existing "enclosing programs" that already understand the framework. As it is a *framework*, strict roles have been delegated to each component that make up a writing or reading framework, making implementation easy for the developer, and configuring and linking easy for the writer.
+
+Yet the most important user is the reader, without whom all of this would be pointless. By placing program design into the hands of a community (or potentially just me) instead of relying on some pre-baked IDE like [Twine](https://twinery.org), you free up configurability, while the framework keeps the books tidy. The dream is that there be an internet library of component implementations of varying mutual compatibilities that writers can grab to make their own custom story program, as if with Legos. Then, if a writer feels like the current options are insufficient, they become a developer, or perhaps put a request up on a forum!
+
+So, in order to realize my dream, I need three things: a framework that's as general as possible, a framework that's as specific as possible, and a community of people willing to spend lots of their time working with something I came up with. In other words, I have already resigned myself to failure, but this is something I care about enough to give it a shot anyway.
 
 ---
-
-For what follows, it will be useful to define what I have chosen to call an embeddable framework.
 
 ### Data Definition: Embeddable Framework
 
@@ -27,21 +24,14 @@ An *embeddable framework* is a set of definite, implementable (as per Java inter
 * **Implementation compatibility**: A given implementation of some component need not be compatible with all implementations of other components.
   * While implementations of course have the same methods as their respective components, those methods may expect input or produce output that implementations of other components aren’t set up to handle.
   * There is no framework-based, catch-all way of checking implementation compatibility; that is done as needed by implementations. If incompatible frameworks are put together, any consequent exceptions will be thrown mid-session. (Or, even scarier, maybe no exceptions will be thrown at all.)
-* **Execution**: An embeddable framework is called such because a set of pre-linked implementations (called a dormant session) on their own cannot run — a session is only begun when an external process runs them.
-  * Linker: Imps cannot link themselves on their own and require an external process to put them together.
-  * Entry point: Each embeddable framework must have reserved method in one of its components that functions as an entry point to run a session.
+* **Execution**: An embeddable framework is called such because a set of pre-linked implementations (called a dormant session) on their own cannot run — a session is only begun when an external process runs it.
+  * **Linker**: Imps cannot link themselves on their own and require an external process to put them together.
+  * **Entry point**: Each embeddable framework must have reserved method in one of its components that functions as an entry point to run a session.
 * **I/O**: Each session can accept input at any time from one or more sources and send output to one or more destinations.
   * A session never does anything without receiving input, and always produces output as quickly as possible — if some presentational delay is necessary, it is the recipient’s responsibility to manage that.
 
 Queasy Points:
 - “Framework daemon” is a much cooler (and potentially more apt) name, but I don’t know if what I’m making is actually a daemon because I don’t know very much about computing.
-  - If I do end up calling this a framework daemon, I could refer to the implementations as imps and get all hell-themed with my terminology. But as fun as that would be, I do want people to read this, so I don’t want to sacrifice an intuitive naming scheme at the expense of fun.
-  - …But come on:
-    - Session —> daemon
-    - Components —> still components, but ritual components. Hmm…
-    - Implementations —> imps
-    - Calling process —> summoner
-    - Dormant session —> unsummoned daemon
 - I’ve left out the “interpretation” section of the data design recipe, but I don’t feel like this needs one, as it isn’t domain-specific data representing some definite information. It really is just data.
 
 And now for the main event. Sorry for butchering the design recipe.
@@ -63,24 +53,18 @@ Queasy Points:
 
 ### Purpose Statement(s)
 
-The Solaria Framework is an interactive storytelling pipeline from a writer to a reader. From the [wikipedia page](https://en.wikipedia.org/wiki/Interactive_storytelling):
-
-> Interactive storytelling […] is a form of digital entertainment in which the storyline is not predetermined. The author creates the setting, characters, and situation which the narrative must address, but the user (also reader or player) experiences a unique story based on their interactions with the story world.
-
-After that, their definition gets way too specific, neglecting to separate function from implementation. (Even this part of the definition is a little implementation-specific for me (who says there’s characters?), but it will serve.)
+The Solaria Framework is an interactive storytelling pipeline from a writer to a reader. A writer can use the writing framework to write a (typically) non-linear story encoded in a read session, and a reader can run the read session (perhaps as a part of some other storytelling program, like a video game) to experience the writer's story.
 
 * **`read`**: a read session manages how a reader’s interactions with a story world affect the path of a narrative.
-  * **I/O**: The inputs to a read session should represent a reader’s choice or action, and its outputs should represent the future path of the narrative, be that the changes an interaction caused or simply the next paragraph.
-    * The inputs and outputs of a read session can take what ever form they need to to fit the needs of the enclosing program, if there is one.
+  * **I/O**: The inputs to a read session should represent a reader’s choice or action, and its outputs should represent the future path of the narrative, be that some representation of the changes an interaction caused or simply the next paragraph.
   * **Enclosing program, or lack thereof**: A read session could tell a story pretty much on its own, or it can be a small module managing a reader’s path through a narrative told by a much larger program. If the second case is true, then `read` components should be implemented to fit the needs of the enclosing program, not the other way around.
-  * **Story Component**: The `read` framework has one particular component from whose implementations information about a narrative is accessible, called the *story component*. ~~An implementation of a story component is called a story.~~ Other components’ implementations, such as ones for display or reader response processing, should carry as little information about a narrative as possible. This will clarify the structure of a write session, which is given below.
-* **`write`**: A write session allows a writer to access `read` component implementations, write a non-bold story encoded in a bold story, configure implementations of other `read` components, and link them all together.
-  * **I/O**: The inputs to a write session should reflect a writer’s desired actions, be they selecting implementations, writing the story, or creating a dormant read session. The outputs should represent the curent state of a write session after these alterations.
-  * **Enclosing program, or lack thereof**: A single write session can perform its function if using appropriate implementations (by definition), but just by the nature of a write session vs. a read session, a writer may want to “dynamically link” write sessions and run them simultaneously, perhaps to get different looks at the story. 
+  * **Story Component and Manuscript**: The `read` framework has one particular component from whose implementations information about a narrative is accessible, called the *story component*. An instance of a story component implementation is called a *manuscript*. Other components’ implementations, such as ones for display or reader response processing, should carry as little information about a narrative as possible, ideally none. This will clarify the structure of a write session, which is given below.
+* **`write`**: A write session allows a writer to access `read` component implementations, write a manuscript, configure implementations of the other `read` components, and link them all together into a dormant read session.
+  * **I/O**: The inputs to a write session should reflect a writer’s desired actions, be they selecting implementations, writing the manuscript, or creating a dormant read session. The outputs should represent the curent state of a write session after these alterations.
+  * **Enclosing program, or lack thereof**: A single write session can perform its function if using appropriate implementations (by definition), but just by the nature of a write session vs. a read session, a writer may want to “dynamically link” write sessions and run them simultaneously, perhaps to get different looks at the manuscript-to-be. 
 
 Queasy Points:
 - Should the “story component” bit go in the data definition? I put it here because I’m singling out a component based off of its purpose statement, not on anything definite about its inputs and outputs.
-  - Let's define a story implementation as something, but let's not use the word *story*.
 - I don't like the amount of choice that a developer has in deciding what goes in the read session and what goes in an enclosing program. Should I place additional restrictions on the form and content of read session output? This distinction feels squishy.
 
 ### Examples
@@ -89,9 +73,9 @@ Queasy Points:
 
 For ease of reference, most of these examples show pre-existing games reimplemented in terms of the framework.
 
-**_Zork_**: The classic text adventure game [*Zork*](https://en.wikipedia.org/wiki/Zork) (an inspiration for this framework) could be implemented in terms of a read session.
-* **I/O**: The input source would be the keyboard, from which text would be read into the read session. The output would be the program's response text.
-* **Enclosing program, or lack thereof**: As this implementation of *Zork* returns text directly, there wouldn't need to be an enclosing program - the read session could simply output text to a command line. However, for extra bells and whistles, all input and output could be routed through an enclosing program to accomplish non-narrative functionality as saving the game or adjusting display preferences like text size.
+**_Zork_**: The classic text adventure game [*Zork*](https://en.wikipedia.org/wiki/Zork), an inspiration for this framework, could be implemented in terms of a read session.
+* **I/O**: The input source would be the keyboard, from which text would be read into the read session. The output would be the program's response text, which would be somehow written to the screen.
+* **Enclosing program, or lack thereof**: As this implementation of *Zork* returns text directly, there wouldn't need to be an enclosing program - the read session could simply output text to a command line. However, for extra bells and whistles, all input and output could be routed through an enclosing program to accomplish non-narrative functionality like saving the game or adjusting display preferences like text size.
 
 **_Skyrim_**: Or insert-your-favorite-open-world-adventure-game-here. This is a more complicated example than the basic *Zork*, as this shows how a read session can be embedded into a larger storytelling program.
 * **I/O**: The inputs to the read session would be some representation of any action that the reader (player) performs in the game world that could influence the course of a narrative. Say that the reader picked up a golden carrot that can grant sight to the blind, I don't know. The read session might receive that inventory update, check with its internal model of the story, and then output something to the larger Skyrim program telling it to make some quest available somewhere. I don't know; I'm tired.
@@ -102,7 +86,7 @@ For ease of reference, most of these examples show pre-existing games reimplemen
 
 #### `write`
 
-**_SCALE: The Solaria CommAnd Line Environment_**: Simple example.
+**_SCALE: The Solaria CommAnd Line Environment_**: 
 
 **_Bonsai: The Solaria GUI Environment_**: More complex example, with more complex enclosing program, but sits on top of SCALE.
 
@@ -112,5 +96,15 @@ For ease of reference, most of these examples show pre-existing games reimplemen
 
 As much as I would like to write tests for this stuff, I am still at too high a level to do so.
 
-## Design Recipe: Solaria Framework Components
+## Component-focused overview
 
+---
+
+## Conclusion
+
+### For Blerner in particular
+
+* I am also looking for critiques on the quality of my technical writing. This is intended to be a technical document, and if you have any advice on how to improve that, it would be welcome.
+  * In writing this, I followed the [Google Dev Docs Style Guide](https://developers.google.com/style/text-formatting), but I don't feel like proper text formatting is sufficient.
+* Yes, I intend to figure out what the frameworks are at some point, but I think that more important is building these requirements around them.
+  * Nah, fuck that. This weekend I'm diving into the components.
