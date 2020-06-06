@@ -2,8 +2,8 @@
 
 ## Issues
 - Are actions and events restricted to discrete packets of information, or can they be continuous streams?
-- It seems that output text a la Zork no longer fits in with what an event is — "something that could have happened some other way".
-- An action is "something done by a reader that can have an effect on the narrative path". Does this support on-the-fly alterations being made by what I'm termind writer-readers? There should absolutely be support for this. What is an action? Does it have to occur in the story world?
+- It seems that output text a la Zork no longer fits in with what an event is — "something that is going to happen in the story-world that could have not happened or happened some other way".
+- An action is "something that can have an effect on the narrative path". Does this support on-the-fly alterations being made by what I'm termind writer-readers? There should absolutely be support for this. What is an action? Does it have to occur in the story world?
 - Can read sessions have listeners injected into an enclosing program? This would be a nice way of having read sessions choose what data they're looking for dynamically, but on the other hand, this breaks the separation between an enclosing program and a read session.
 
 ## Actions and Events

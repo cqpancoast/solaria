@@ -1,19 +1,18 @@
-from setuptools import setup, find_packages
+from setuptools import setup
+from setuptools import find_packages
 
 setup(
     name='solaria',
-    version='0.0.3',
-    entry_points={
-        'console_scripts': [
-            'scale = src.writing.environment.scale.cle_main:main',
-            # 'solaria = src.reading.storyteller.main' or something
-        ],
-    },
-    packages=find_packages(),  # NOTE what exactly does this do?
-    install_requires=['networkx'],
-
+    version='0.0.0',
+    packages=find_packages(),
     author='Casey Pancoast',
-    description='A whole lot of things at the moment.',
+    author_email='cqpancoast@gmail.com',
+    description='An API for interactive storytelling.',
+    classifiers=[
+        "Programming Language :: Python",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
     project_urls={
         'Source code': 'www.github.com/cqpancoast/solaria'
     },
