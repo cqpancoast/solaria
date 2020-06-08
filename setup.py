@@ -12,8 +12,5 @@ setup(
         "Programming Language :: Python",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-    ],
-    project_urls={
-        'Source code': 'www.github.com/cqpancoast/solaria'
-    },
+    ]
 )
